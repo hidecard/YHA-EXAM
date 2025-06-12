@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 include 'db.php';
 $result = $conn->query("SELECT c.*, cc.name AS category_name FROM courses c JOIN course_categories cc ON c.category_id = cc.id");
 ?>

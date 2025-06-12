@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+header('Content-Type: text/html; charset=UTF-8');
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM course_categories WHERE id = $id");
 $row = $result->fetch_assoc();

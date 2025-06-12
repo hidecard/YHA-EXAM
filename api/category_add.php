@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $stmt = $conn->prepare("INSERT INTO course_categories (name) VALUES (?)");

@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+header('Content-Type: text/html; charset=UTF-8');
 $categories = $conn->query("SELECT * FROM course_categories");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];

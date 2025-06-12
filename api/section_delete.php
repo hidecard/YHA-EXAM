@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 include 'db.php';
 $id = $_GET['id'];
 $stmt = $conn->prepare("DELETE FROM sections WHERE id = ?");

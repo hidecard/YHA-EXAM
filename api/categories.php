@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 include 'db.php';
 $result = $conn->query("SELECT * FROM course_categories");
 ?>
