@@ -1,13 +1,15 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8'); // Ensure HTML output
+header('Content-Type: text/html; charset=UTF-8');
 include 'db.php';
 
-// Simple routing based on URL path
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-switch ($path) {
-    case '/':
-    case '/index.php':
-        // Homepage content
+// Get the path from the query parameter or REQUEST_URI
+$path = isset($_GET['path']) ? parse_url($_GET['path'], PHP_URL_PATH) : parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$path = rtrim($path, '/');
+$path = $path === '' ? '/' : $path;
+
+switch (true) {
+    case $path === '/' || $path === '/index.php':
+        // Homepage content (same as before)
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -25,16 +27,16 @@ switch ($path) {
         <body>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.php">YHA Training</a>
+                    <a class="navbar-brand" href="/">YHA Training</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="categories.php">Categories</a></li>
-                            <li class="nav-item"><a class="nav-link" href="courses.php">Courses</a></li>
-                            <li class="nav-item"><a class="nav-link" href="sections.php">Sections</a></li>
-                            <li class="nav-item"><a class="nav-link" href="students.php">Students</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/sections">Sections</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
                         </ul>
                     </div>
                 </div>
@@ -48,56 +50,55 @@ switch ($path) {
         </html>
         <?php
         break;
-    case '/categories':
+    case $path === '/categories':
         include 'categories.php';
         break;
-    case '/courses':
+    case $path === '/courses':
         include 'courses.php';
         break;
-    case '/sections':
+    case $path === '/sections':
         include 'sections.php';
         break;
-    case '/students':
+    case $path === '/students':
         include 'students.php';
         break;
-    case '/category_add':
+    case $path === '/category_add':
         include 'category_add.php';
         break;
-    case '/category_delete':
+    case strpos($path, '/category_delete') === 0:
         include 'category_delete.php';
         break;
-    case '/category_edit':
+    case strpos($path, '/category_edit') === 0:
         include 'category_edit.php';
         break;
-    case '/course_add':
+    case $path === '/course_add':
         include 'course_add.php';
         break;
-    case '/course_delete':
+    case strpos($path, '/course_delete') === 0:
         include 'course_delete.php';
         break;
-    case '/course_edit':
+    case strpos($path, '/course_edit') === 0:
         include 'course_edit.php';
         break;
-    case '/section_add':
+    case $path === '/section_add':
         include 'section_add.php';
         break;
-    case '/section_delete':
+    case strpos($path, '/section_delete') === 0:
         include 'section_delete.php';
         break;
-    case '/section_edit':
+    case strpos($path, '/section_edit') === 0:
         include 'section_edit.php';
         break;
-    case '/student_add':
+    case $path === '/student_add':
         include 'student_add.php';
         break;
-    case '/student_delete':
+    case strpos($path, '/student_delete') === 0:
         include 'student_delete.php';
         break;
-    case '/student_edit':
+    case strpos($path, '/student_edit') === 0:
         include 'student_edit.php';
         break;
     default:
-        // 404 Page
         http_response_code(404);
         ?>
         <!DOCTYPE html>
@@ -111,8 +112,9 @@ switch ($path) {
         <body>
             <div class="container">
                 <h1 class="mt-4">404 - Page Not Found</h1>
-                <p>The requested page does not exist. <a href="index.php">Return to Home</a></p>
+                <p>The requested page does not exist. <a href="/">Return to Home</a></p>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         </body>
         </html>
         <?php
