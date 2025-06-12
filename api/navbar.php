@@ -10,7 +10,8 @@ header('Content-Type: text/html; charset=UTF-8');
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="/categories">Categories</a></li>
-                <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cour
+System: ses">Courses</a></li>
                 <li class="nav-item"><a class="nav-link" href="/sections">Sections</a></li>
                 <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
             </ul>

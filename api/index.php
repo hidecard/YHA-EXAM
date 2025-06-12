@@ -2,14 +2,13 @@
 header('Content-Type: text/html; charset=UTF-8');
 include 'db.php';
 
-// Get the path from the query parameter or REQUEST_URI
+// Get path from query parameter or REQUEST_URI
 $path = isset($_GET['path']) ? parse_url($_GET['path'], PHP_URL_PATH) : parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$path = rtrim($path, '/');
+$path = rtrim(strtolower($path), '/'); // Normalize: remove trailing slash, lowercase
 $path = $path === '' ? '/' : $path;
 
 switch (true) {
     case $path === '/' || $path === '/index.php':
-        // Homepage content (same as before)
         ?>
         <!DOCTYPE html>
         <html lang="en">
