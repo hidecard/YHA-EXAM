@@ -15,7 +15,7 @@ $result = $conn->query("SELECT s.*, c.name AS course_name FROM students s JOIN c
     <?php include 'navbar.php'; ?>
     <div class="container">
         <h2 class="mt-4">Students</h2>
-        <a href="student_add.php" class="btn btn-primary mb-3">Add New Student</a>
+        <a href="/student_add" class="btn btn-primary mb-3">Add New Student</a>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead>
@@ -39,8 +39,8 @@ $result = $conn->query("SELECT s.*, c.name AS course_name FROM students s JOIN c
                             <td><?php echo htmlspecialchars($row['course_name']); ?></td>
                             <td><?php echo htmlspecialchars($row['register_date']); ?></td>
                             <td>
-                                <a href="student_edit.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="student_delete.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                                <a href="/student_edit?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="/student_delete?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
